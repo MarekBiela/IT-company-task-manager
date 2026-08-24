@@ -34,3 +34,30 @@ class TaskType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    deadline = models.DateTimeField()
+    is_completed = models.BooleanField(default=False)
+    priority = models.CharField(
+        choices=[
+            ("URGENT", "Urgent"),
+            ("HIGH", "High"),
+            ("MEDIUM", "Medium"),
+            ("LOW", "Low"),
+        ],
+    )
+    task_type = models.ForeignKey(
+        TaskType,
+        on_delete=models.PROTECT,
+        related_name="tasks",
+    )
+    assignees = models.ManyToManyField(Worker, related_name="tasks")
+
+    class Meta:
+        ordering = ["is_completed", "deadline", "priority"]
+
+    def __str__(self):
+        return f"{self.name}"
