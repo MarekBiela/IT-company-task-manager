@@ -6,9 +6,9 @@ from django.contrib.auth.admin import UserAdmin
 @admin.register(Worker)
 class WorkerAdmin(UserAdmin):
     list_display = ["username", "first_name", "last_name", "email", "position"]
-    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ["position"]}),)
+    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("position",)}),)
     add_fieldsets = UserAdmin.add_fieldsets + (
-        ("Additional info", {"fields": ["position"]}),
+        ("Additional info", {"fields": ("position",)}),
     )
 
 
