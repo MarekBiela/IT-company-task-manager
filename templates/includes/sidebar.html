@@ -1,7 +1,10 @@
 <ul>
   {% if user.is_authenticated %}
     <li>username</li>
-    <li>Logout</li>
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit">Log out</button>
+    </form>
   {% else %}
     <li><a href="{% url 'login' %}">Login</a></li>
   {% endif %}
