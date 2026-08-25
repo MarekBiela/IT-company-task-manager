@@ -39,3 +39,9 @@ class WorkerListView(generic.ListView):
     def get_queryset(self):
         queryset = Worker.objects.select_related("position")
         return queryset
+
+
+class TaskTypeListView(generic.ListView):
+    model = TaskType
+    template_name = "tasks/task_type_list.html"
+    context_object_name = "task_type_list"
