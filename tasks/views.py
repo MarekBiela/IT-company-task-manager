@@ -25,5 +25,13 @@ def index(request):
     return render(request, "tasks/index.html", context=context)
 
 
+class TaskListView(generic.ListView):
+    model = Task
+
+    def get_queryset(self):
+        queryset = Task.objects.select_related("task_type")
+        return queryset
+
+
 class WorkerListView(generic.ListView):
     model = Worker
