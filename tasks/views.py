@@ -33,6 +33,11 @@ class TaskListView(generic.ListView):
         return queryset
 
 
+class TaskDetailView(generic.DetailView):
+    model = Task
+    queryset = Task.objects.prefetch_related("assignees__position")
+
+
 class WorkerListView(generic.ListView):
     model = Worker
 

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Name: {{ task.name }}</h2>
+  <br>
+  <p><strong>Task Type:</strong> {{ task.task_type }}</p>
+  <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
+  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+  <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
+  <hr>
+  <p>
+    <strong>Description:</strong><br>
+    {{ task.description }}</p>
+  <hr>
+  <div>
+    <h3>Assignees:</h3>
+    {% if task.assignees.all %}
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Position</th>
+        </tr>
+        {% for assignee in task.assignees.all %}
+          <tr>
+            <td>{{ assignee.id }}</td>
+            <td>{{ assignee.username }}</td>
+            <td>{{ assignee.first_name }}</td>
+            <td>{{ assignee.last_name }}</td>
+            <td>{{ assignee.email }}</td>
+            <td>{{ assignee.position }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+    <p>No workers are assigned to the task.</p>
+  {% endif %}
+  </div>
+{% endblock %}
