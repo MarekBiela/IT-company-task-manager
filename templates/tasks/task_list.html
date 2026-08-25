@@ -16,7 +16,7 @@
       </tr>
       {% for task in task_list %}
         <tr>
-          <td>{{ task.id }}</td>
+          <td><a href="{% url 'tasks:task-detail' task.pk %}">{{ task.id}} </a></td>
           <td>{{ task.name }}</td>
           <td>{{ task.task_type }}</td>
           <td>{{ task.is_completed }}</td>
