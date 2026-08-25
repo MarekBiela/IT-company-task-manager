@@ -35,3 +35,7 @@ class TaskListView(generic.ListView):
 
 class WorkerListView(generic.ListView):
     model = Worker
+
+    def get_queryset(self):
+        queryset = Worker.objects.select_related("position")
+        return queryset
