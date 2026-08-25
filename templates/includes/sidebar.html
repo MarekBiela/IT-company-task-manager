@@ -1,0 +1,14 @@
+<ul>
+  {% if user.is_authenticated %}
+    <li>username</li>
+    <li>Logout</li>
+  {% else %}
+    <li>Login</li>
+  {% endif %}
+  <br>
+  <li>Home</li>
+  <li>All tasks</li>
+  <li>All workers</li>
+  <li>All task types</li>
+  <li>All positions</li>
+</ul>
