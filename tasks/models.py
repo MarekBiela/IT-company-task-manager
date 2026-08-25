@@ -43,10 +43,10 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(
         choices=[
-            ("URGENT", "Urgent"),
-            ("HIGH", "High"),
-            ("MEDIUM", "Medium"),
-            ("LOW", "Low"),
+            ("4", "Urgent"),
+            ("3", "High"),
+            ("2", "Medium"),
+            ("1", "Low"),
         ],
     )
     task_type = models.ForeignKey(
@@ -57,7 +57,7 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker, related_name="tasks")
 
     class Meta:
-        ordering = ["is_completed", "deadline", "priority"]
+        ordering = ["is_completed", "deadline", "-priority"]
 
     def __str__(self):
         return f"{self.name}"
