@@ -3,7 +3,7 @@
     <li>username</li>
     <li>Logout</li>
   {% else %}
-    <li>Login</li>
+    <li><a href="{% url 'login' %}">Login</a></li>
   {% endif %}
   <br>
   <li><a href="{% url 'tasks:index' %}">Home</a></li>
