@@ -41,6 +41,11 @@ class WorkerListView(generic.ListView):
         return queryset
 
 
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+    Worker.objects.prefetch_related("tasks__task_type")
+
+
 class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "tasks/task_type_list.html"
