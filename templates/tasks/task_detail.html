@@ -6,6 +6,9 @@
     <a href="{% url 'tasks:task-update' pk=task.id %}">
       Update
     </a>
+    <a href="{% url 'tasks:task-delete' pk=task.id %}">
+      Delete
+    </a>
   </h2>
   <br>
   <p><strong>Task Type:</strong> {{ task.task_type }}</p>
