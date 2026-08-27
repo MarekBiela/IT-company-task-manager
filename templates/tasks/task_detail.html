@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Name: {{ task.name }}</h2>
+  <h2>
+    Name: {{ task.name }}
+    <a href="{% url 'tasks:task-update' pk=task.id %}">
+      Update
+    </a>
+  </h2>
   <br>
   <p><strong>Task Type:</strong> {{ task.task_type }}</p>
   <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
