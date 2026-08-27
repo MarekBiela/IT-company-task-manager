@@ -2,7 +2,10 @@
 
 {% block content %}
   <h1>
-     Position List
+    Position List
+    <a href="{% url 'tasks:position-create' %}">
+      Create
+    </a>
   </h1>
   {% if position_list %}
     <ul>
