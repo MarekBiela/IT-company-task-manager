@@ -13,6 +13,9 @@
         <li>
           {{ position.id }}
           {{ position.name }}
+          <a href="{% url 'tasks:position-update' pk=position.id %}">
+            Update
+          </a>
         </li>
       {% endfor %}
     </ul>
