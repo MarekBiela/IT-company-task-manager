@@ -13,6 +13,9 @@
         <li>
           {{ task_type.id }}
           {{ task_type.name }}
+          <a href="{% url 'tasks:task-type-update' pk=task_type.id %}">
+            Update
+          </a>
         </li>
       {% endfor %}
     </ul>
