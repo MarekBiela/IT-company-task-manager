@@ -6,6 +6,9 @@
     <a href="{% url 'tasks:worker-update' pk=worker.id %}">
       Update position
     </a>
+    <a href="{% url 'tasks:worker-delete' pk=worker.id %}">
+      Delete
+    </a>
   </h2>
   <br>
   <p><strong>First name:</strong> {{ worker.first_name }}</p>
