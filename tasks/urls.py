@@ -18,6 +18,7 @@ from .views import (
     PositionListView,
     PositionCreateView,
     PositionUpdateView,
+    PositionDeleteView,
     TaskCreateView,
 )
 
@@ -51,6 +52,11 @@ urlpatterns = [
         "positions/<int:pk>/update/",
         PositionUpdateView.as_view(),
         name="position-update",
+    ),
+    path(
+        "positions/<int:pk>/delete/",
+        PositionDeleteView.as_view(),
+        name="position-delete",
     ),
 ]
 
