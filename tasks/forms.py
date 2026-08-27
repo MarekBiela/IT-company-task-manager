@@ -41,3 +41,9 @@ class WorkerCreationForm(UserCreationForm):
             "last_name",
             "email",
         )
+
+
+class PositionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = ["position"]
