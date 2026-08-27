@@ -43,7 +43,7 @@ class WorkerCreationForm(UserCreationForm):
         )
 
 
-class PositionUpdateForm(forms.ModelForm):
+class WorkerPositionUpdateForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ["position"]
