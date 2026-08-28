@@ -5,7 +5,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .models import Task, Worker, TaskType, Position
-from .forms import TaskForm, WorkerCreationForm, WorkerPositionUpdateForm
+from .forms import (
+    TaskForm,
+    WorkerCreationForm,
+    WorkerPositionUpdateForm,
+    TaskSearchForm,
+)
 
 
 @login_required
@@ -33,8 +38,17 @@ def index(request):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
 
+    def get_context_data(self, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskSearchForm(initial={"name": name})
+        return context
+
     def get_queryset(self):
         queryset = Task.objects.select_related("task_type")
+        form = TaskSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
 
 
