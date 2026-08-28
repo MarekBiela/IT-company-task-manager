@@ -7,6 +7,10 @@
       Create
     </a>
   </h1>
+  <form method="get" action="">
+    {{ search_form}}
+    <input type="submit">
+  </form>
   {% if position_list %}
     <ul>
       {% for position in position_list %}
