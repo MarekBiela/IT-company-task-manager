@@ -11,6 +11,7 @@ from .forms import (
     WorkerPositionUpdateForm,
     TaskSearchForm,
     WorkerSearchForm,
+    TaskTypeSearchForm,
 )
 
 
@@ -114,6 +115,19 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "tasks/task_type_list.html"
     context_object_name = "task_type_list"
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskTypeSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        queryset = TaskType.objects.all()
+        form = TaskTypeSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
