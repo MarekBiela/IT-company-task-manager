@@ -49,7 +49,7 @@ class WorkerPositionUpdateForm(forms.ModelForm):
         fields = ["position"]
 
 
-class TaskSearchForm(forms.forms.Form):
+class TaskSearchForm(forms.Form):
     name = forms.CharField(
         max_length=100,
         required=False,
