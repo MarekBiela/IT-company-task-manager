@@ -21,8 +21,19 @@
     {{ task.description }}</p>
   <hr>
   <div>
-    <h3>Assignees:</h3>
-    {% if task.assignees.all %}
+    <h3>
+      Assignees:
+      {% if task in user.tasks.all %}
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}">
+          Remove me from this task
+        </a>
+      {% else %}
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}">
+          Assign me to this task
+        </a>
+      {% endif %}
+      {% if task.assignees.all %}
+    </h3>
       <table>
         <tr>
           <th>ID</th>
