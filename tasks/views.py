@@ -84,14 +84,18 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = WorkerSearchForm(initial={"username": username})
+        context["search_form"] = (
+            WorkerSearchForm(initial={"username": username})
+        )
         return context
 
     def get_queryset(self):
         queryset = Worker.objects.select_related("position")
         form = WorkerSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(username__icontains=form.cleaned_data["username"])
+            return queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
         return queryset
 
 
