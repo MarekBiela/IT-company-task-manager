@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>
-    Username: {{ worker.username }}
-    <a href="{% url 'tasks:worker-update' pk=worker.id %}">
-      Update position
-    </a>
-    <a href="{% url 'tasks:worker-delete' pk=worker.id %}">
-      Delete
-    </a>
+  <h2 class="d-flex justify-content-between">
+    <div>
+      <b> Username: </b> {{ worker.username }}
+    </div>
+    <div class="ms-auto">
+      <a href="{% url 'tasks:worker-update' pk=worker.id %}" class="label theme-bg text-white f-24">
+        Update position
+      </a>
+      <a href="{% url 'tasks:worker-delete' pk=worker.id %}" class="label theme-bg2 text-white f-24">
+        Delete
+      </a>
+    </div>
   </h2>
   <br>
-  <p><strong>First name:</strong> {{ worker.first_name }}</p>
-  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
-  <p><strong>Email:</strong> {{ worker.email }}</p>
-  <p><strong>Position:</strong> {{ worker.position }}</p>
-  <hr>
+  <p class="f-20"><b>First name:</b> {{ worker.first_name }}</p>
+  <p class="f-20"><b>Last name:</b> {{ worker.last_name }}</p>
+  <p class="f-20"><b>Email:</b> {{ worker.email }}</p>
+  <p class="f-20"><b>Position:</b> {{ worker.position }}</p>
+  <br>
   <div>
     <h3>Tasks</h3>
       {% if worker.tasks.all %}
-    <table>
+    <table class="table w-100">
       <tr>
         <th>ID</th>
         <th>Name</th>

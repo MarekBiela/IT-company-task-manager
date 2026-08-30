@@ -1,37 +1,42 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-  <h1>
+  <h1 class="d-flex justify-content-between">
     Task List
-    <a href="{% url 'tasks:task-create' %}">
+    <a href="{% url 'tasks:task-create' %}" class="ms-auto label theme-bg text-white f-32">
         Create
     </a>
   </h1>
+  <br>
   <form method="get" action="">
-    {{ search_form}}
+    {{ search_form|crispy }}
     <input type="submit">
   </form>
+  <br>
+  <br>
   {% if task_list %}
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Task Type</th>
-        <th>Is completed</th>
-        <th>Deadline</th>
-        <th>Priority</th>
-      </tr>
-      {% for task in task_list %}
+      <table class="table w-100">
         <tr>
-          <td><a href="{% url 'tasks:task-detail' task.pk %}">{{ task.id}} </a></td>
-          <td>{{ task.name }}</td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.is_completed }}</td>
-          <td>{{ task.deadline }}</td>
-          <td>{{ task.get_priority_display }}</td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Task Type</th>
+          <th>Is completed</th>
+          <th>Deadline</th>
+          <th>Priority</th>
         </tr>
-      {% endfor %}
-    </table>
+        {% for task in task_list %}
+          <tr>
+            <td><a href="{% url 'tasks:task-detail' task.pk %}" class="text-c-green mb-0">{{ task.id}} </a></td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.task_type }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.get_priority_display }}</td>
+          </tr>
+        {% endfor %}
+      </table>
   {% else %}
     <p>No tasks have been added yet.</p>
   {% endif %}

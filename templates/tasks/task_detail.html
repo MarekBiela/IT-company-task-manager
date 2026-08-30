@@ -1,40 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>
-    Name: {{ task.name }}
-    <a href="{% url 'tasks:task-update' pk=task.id %}">
-      Update
-    </a>
-    <a href="{% url 'tasks:task-delete' pk=task.id %}">
-      Delete
-    </a>
+  <h2 class="d-flex justify-content-between">
+    <div>
+      <b> Name: </b> {{ task.name }}
+    </div>
+    <div class="ms-auto">
+      <a href="{% url 'tasks:task-update' pk=task.id %}" class="label theme-bg text-white f-24">
+        Update
+      </a>
+      <a href="{% url 'tasks:task-delete' pk=task.id %}" class="label theme-bg2 text-white f-24">
+        Delete
+      </a>
+    </div>
   </h2>
   <br>
-  <p><strong>Task Type:</strong> {{ task.task_type }}</p>
-  <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
-  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
-  <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
-  <hr>
-  <p>
-    <strong>Description:</strong><br>
-    {{ task.description }}</p>
-  <hr>
+  <p class="f-20"><b>Task Type:</b> {{ task.task_type }}</p>
+  <p class="f-20"><b>Is completed:</b> {{ task.is_completed }}</p>
+  <p class="f-20"><b>Deadline:</b> {{ task.deadline }}</p>
+  <p class="f-20"><b>Priority:</b> {{ task.get_priority_display }}</p>
+  <p class="f-20">
+    <b>Description:</b><br>
+    {{ task.description }}
+  </p>
+  <br>
   <div>
-    <h3>
+    <h3 class="d-flex justify-content-between">
       Assignees:
       {% if task in user.tasks.all %}
-        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}">
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="label theme-bg2 text-white f-20">
           Remove me from this task
         </a>
       {% else %}
-        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}">
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="label theme-bg text-white f-20">
           Assign me to this task
         </a>
       {% endif %}
       {% if task.assignees.all %}
     </h3>
-      <table>
+      <table class="table w-100">
         <tr>
           <th>ID</th>
           <th>Username</th>

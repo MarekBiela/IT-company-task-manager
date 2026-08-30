@@ -1,31 +1,40 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-  <h1>
+  <h1 class="d-flex justify-content-between">
     Position List
-    <a href="{% url 'tasks:position-create' %}">
+    <a href="{% url 'tasks:position-create' %}" class="ms-auto label theme-bg text-white f-32">
       Create
     </a>
   </h1>
+  <br>
   <form method="get" action="">
-    {{ search_form}}
+    {{ search_form|crispy }}
     <input type="submit">
   </form>
+  <br>
+  <br>
   {% if position_list %}
-    <ul>
+    <table class="table w-100">
       {% for position in position_list %}
-        <li>
-          {{ position.id }}
-          {{ position.name }}
-          <a href="{% url 'tasks:position-update' pk=position.id %}">
+        <tr>
+          <td> {{ position.id }} </td>
+          <td> {{ position.name }} </td>
+          <td>
+            <a href="{% url 'tasks:position-update' pk=position.id %}" class="label theme-bg text-white">
             Update
-          </a>
-          <a href="{% url 'tasks:position-delete' pk=position.id %}">
-            Delete
-          </a>
-        </li>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'tasks:position-delete' pk=position.id %}" class="label theme-bg2 text-white">
+              Delete
+            </a>
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
     <p>No positions have been added yet.</p>
   {% endif %}

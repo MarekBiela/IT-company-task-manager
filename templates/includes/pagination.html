@@ -1,18 +1,18 @@
 {% load query_transform %}
 
 {% if is_paginated %}
-  <ul>
+  <ul class="d-flex list-unstyled">
     {% if page_obj.has_previous %}
       <li>
-        <a href="?{% query_transform request page=page_obj.previous_page_number %}">prev</a>
+        <a href="?{% query_transform request page=page_obj.previous_page_number %}" class="text-c-green mb-0">prev &nbsp;</a>
       </li>
     {% endif %}
     <li>
-      {{ page_obj.number }} of {{ paginator.num_pages }}
+      {{ page_obj.number }} of {{ paginator.num_pages }} &nbsp;
     </li>
     {% if page_obj.has_next %}
       <li>
-        <a href="?{% query_transform request page=page_obj.next_page_number %}">next</a>
+        <a href="?{% query_transform request page=page_obj.next_page_number %}" class="text-c-green mb-0">next</a>
       </li>
     {% endif %}
   </ul>

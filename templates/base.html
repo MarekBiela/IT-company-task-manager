@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    {% block title %}<title>Task manager</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  </head>
 
-<head>
-  {% block title %}<title>Task manager</title>{% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-  <div>
-    {% block sidebar %}
-    {% include "includes/sidebar.html" %}
-    {% endblock %}
-  </div>
-  <div>
-    {% block content %}{% endblock %}
-    {% block pagination %}
-      {% include "includes/pagination.html" %}
-    {% endblock %}
-  </div>
-</body>
-
+  <body class="container-fluid">
+    <div class="row min-vh-100">
+      <div class="col-md-3">
+        {% block sidebar %}
+        {% include "includes/sidebar.html" %}
+        {% endblock %}
+      </div>
+      <div class="col-md-8 card">
+        {% block content %}{% endblock %}
+        {% block pagination %}
+          {% include "includes/pagination.html" %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
 </html>

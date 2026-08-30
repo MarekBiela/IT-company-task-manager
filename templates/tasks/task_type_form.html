@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
   <h1>{{ object|yesno:"Update,Create" }} task type</h1>
+  <br>
   <form action="" method="post" novalidate>
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <input type="submit" value="Submit">
   </form>
 {% endblock %}
