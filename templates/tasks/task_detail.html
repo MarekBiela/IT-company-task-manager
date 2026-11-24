@@ -17,7 +17,7 @@
   <br>
   <p class="f-20"><b>Task Type:</b> {{ task.task_type }}</p>
   <p class="f-20"><b>Is completed:</b> {{ task.is_completed }}</p>
-  <p class="f-20"><b>Deadline:</b> {{ task.deadline }}</p>
+  <p class="f-20"><b>Deadline:</b> {{ task.deadline|date:"d M Y, H:i" }}</p>
   <p class="f-20"><b>Priority:</b> {{ task.get_priority_display }}</p>
   <p class="f-20">
     <b>Description:</b><br>

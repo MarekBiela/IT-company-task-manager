@@ -32,7 +32,7 @@
             <td>{{ task.name }}</td>
             <td>{{ task.task_type }}</td>
             <td>{{ task.is_completed }}</td>
-            <td>{{ task.deadline }}</td>
+            <td>{{ task.deadline|date:"d M Y, H:i" }}</td>
             <td>{{ task.get_priority_display }}</td>
           </tr>
         {% endfor %}
