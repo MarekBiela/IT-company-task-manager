@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>IT Company Task Manager Home</h1>
+    <br>
+    <br>
+    <h4>The site currently contains the following record counts:</h4>
+    <br>
+    <ul>
+        <li><b>Tasks:</b> {{ num_tasks }}</li>
+        <li><b>Workers:</b> {{ num_workers }}</li>
+        <li><b>Task types:</b> {{ num_task_types }}</li>
+        <li><b>Positions:</b> {{ num_positions }}</li>
+    </ul>
+    <br>
+    <p>The page has been visited:
+        <b> {{ num_visits }} time{{ num_visits|pluralize }} </b>
+    </p>
+{% endblock %}

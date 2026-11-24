@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="d-flex justify-content-between">
+    <div>
+      <b> Name: </b> {{ task.name }}
+    </div>
+    <div class="ms-auto">
+      <a href="{% url 'tasks:task-update' pk=task.id %}" class="label theme-bg text-white f-24">
+        Update
+      </a>
+      <a href="{% url 'tasks:task-delete' pk=task.id %}" class="label theme-bg2 text-white f-24">
+        Delete
+      </a>
+    </div>
+  </h2>
+  <br>
+  <p class="f-20"><b>Task Type:</b> {{ task.task_type }}</p>
+  <p class="f-20"><b>Is completed:</b> {{ task.is_completed }}</p>
+  <p class="f-20"><b>Deadline:</b> {{ task.deadline|date:"d M Y, H:i" }}</p>
+  <p class="f-20"><b>Priority:</b> {{ task.get_priority_display }}</p>
+  <p class="f-20">
+    <b>Description:</b><br>
+    {{ task.description }}
+  </p>
+  <br>
+  <div>
+    <h3 class="d-flex justify-content-between">
+      Assignees:
+      {% if task in user.tasks.all %}
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="label theme-bg2 text-white f-20">
+          Remove me from this task
+        </a>
+      {% else %}
+        <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="label theme-bg text-white f-20">
+          Assign me to this task
+        </a>
+      {% endif %}
+      {% if task.assignees.all %}
+    </h3>
+      <table class="table w-100">
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Position</th>
+        </tr>
+        {% for assignee in task.assignees.all %}
+          <tr>
+            <td>{{ assignee.id }}</td>
+            <td>{{ assignee.username }}</td>
+            <td>{{ assignee.first_name }}</td>
+            <td>{{ assignee.last_name }}</td>
+            <td>{{ assignee.email }}</td>
+            <td>{{ assignee.position }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+    <p>No workers are assigned to the task.</p>
+  {% endif %}
+  </div>
+{% endblock %}

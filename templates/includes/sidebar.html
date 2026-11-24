@@ -1,0 +1,59 @@
+<nav class="pcoded-navbar">
+  <div>
+    <div>
+      <ul class="nav pcoded-inner-navbar">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+              User:
+              <a href="{{ user.get_absolute_url }}" class="nav-link d-inline">
+                  <span class="pcoded-mtext">{{ user.get_username }}</span>
+              </a>
+          </li>
+          <br>
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="nav-link border-0" style="cursor: pointer">
+                <span class="pcoded-micon">
+                  <i class="feather icon-log-out text-c-green"></i>
+                </span>
+                <span class="pcoded-mtext">Log out</span>
+              </button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <form method="get" action="{% url 'login' %}">
+              <button type="submit" class="nav-link border-0" style="cursor: pointer">
+                <span class="pcoded-micon">
+                    <i class="feather icon-log-in text-c-green"></i>
+                </span>
+                <span class="pcoded-mtext">Login</span>
+              </button>
+            </form>
+          </li>
+        {% endif %}
+        <li class="nav-item">
+          <a href="{% url 'tasks:index' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-home text-c-green"></i></span><span class="pcoded-mtext">Home</span></a>
+        </li>
+        <li class="nav-item}">
+          <a href="{% url 'tasks:task-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-list text-c-green"></i></span><span class="pcoded-mtext">All tasks</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'tasks:worker-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-users text-c-green"></i></span><span class="pcoded-mtext">All workers</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'tasks:task-type-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-tag text-c-green"></i></span><span class="pcoded-mtext">All task types</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'tasks:position-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-briefcase text-c-green"></i></span><span class="pcoded-mtext">All positions</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

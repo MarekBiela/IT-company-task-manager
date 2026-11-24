@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 class="d-flex justify-content-between">
+   Task Type List
+    <a href="{% url 'tasks:task-type-create' %}" class="ms-auto label theme-bg text-white f-32">
+      Create
+    </a>
+  </h1>
+  <br>
+  <form method="get" action="">
+    {{ search_form|crispy }}
+    <input type="submit">
+  </form>
+  <br>
+  <br>
+  {% if task_type_list %}
+    <table class="table w-100">
+      {% for task_type in task_type_list %}
+        <tr>
+          <td> {{ task_type.id }} </td>
+          <td> {{ task_type.name }} </td>
+          <td>
+            <a href="{% url 'tasks:task-type-update' pk=task_type.id %}" class="label theme-bg text-white">
+            Update
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'tasks:task-type-delete' pk=task_type.id %}" class="label theme-bg2 text-white">
+              Delete
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No task types have been added yet.</p>
+  {% endif %}
+{% endblock %}
